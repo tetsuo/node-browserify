@@ -559,7 +559,7 @@ Browserify.prototype._recorder = function (opts) {
 
 Browserify.prototype._json = function () {
     return through.obj(function (row, enc, next) {
-        if (/\.json$/.test(row.file)) {
+        if (/\.json$/.test(row.file) && !/^arguments\[4\]/.test(row.source)) {
             row.source = 'module.exports=' + row.source;
         }
         this.push(row);
